@@ -1,0 +1,49 @@
+﻿<Window x:Class="IrcCloudApp.UserControl1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:irc="clr-namespace:IrcCloudApp"
+        Title="MainWindow" Height="526.975" Width="890">
+    <Window.Resources>
+        <irc:BufferTemplateSelector 
+                    x:Key="BufferTemplateSelector" />
+    </Window.Resources>
+
+
+    <DockPanel LastChildFill="True">
+        <TreeView x:Name="Tree" DockPanel.Dock="Left" ItemsSource="{Binding}" SelectedItemChanged="Tree_SelectedItemChanged" Width="141" Margin="10,10,0,10">
+            <TreeView.Resources>
+
+                <HierarchicalDataTemplate DataType="{x:Type irc:Connection}" ItemsSource="{Binding ObsBuffers}">
+
+                    <TextBlock Text="{Binding Name}" ToolTip="{Binding Name}" />
+
+                </HierarchicalDataTemplate>
+
+                <DataTemplate x:Key="NormalBufferTemplate">
+                    <TextBlock Text="{Binding Name}" ToolTip="{Binding Name}" />
+                </DataTemplate>
+                <DataTemplate x:Key="ArchivedBufferTemplate">
+                    <TextBlock Foreground="Gray" Text="{Binding Name}" ToolTip="{Binding Name}" />
+
+                </DataTemplate>
+
+            </TreeView.Resources>
+            <TreeView.ItemTemplateSelector>
+                <StaticResource ResourceKey="BufferTemplateSelector"/>
+            </TreeView.ItemTemplateSelector>
+        </TreeView>
+        <ListBox x:Name="Members" DockPanel.Dock="Right"  ItemsSource="{Binding}" RenderTransformOrigin="0.5,0.5" Width="130" Margin="0,10,10,10" >
+            <ListBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.434"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.492"/>
+                </TransformGroup>
+            </ListBox.RenderTransform>
+        </ListBox>
+        <TextBox x:Name="Input" DockPanel.Dock="Bottom" Language="En-Us" TextWrapping="Wrap"  SpellCheck.IsEnabled="True" KeyDown="TextBox_KeyDown" TextChanged="Input_TextChanged" Margin="0,0,0,10" />
+        <ListBox x:Name="Chat"   ItemsSource="{Binding}" Margin="0,10,0,0" Padding="4,0,0,0" />
+    </DockPanel>
+
+</Window>

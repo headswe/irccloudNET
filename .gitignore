@@ -1,0 +1,13 @@
+/IrcCloudApp/bin/Debug/*.dll
+/IrcCloudApp/bin/Debug/*.exe
+/IrcCloudApp/bin/Debug
+/IrcCloudApp/obj/Debug
+/packages/WebSocket4Net.0.8/*.nupkg
+/packages/WebSocket4Net.0.8/lib/net40
+/packages/WebSocket4Net.0.8/lib/net35/*.dll
+*.dll
+*.nupkg
+*.nuspec
+*.ps1
+*.xml
+*.pdb
